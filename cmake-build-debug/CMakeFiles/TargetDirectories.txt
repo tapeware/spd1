@@ -1,0 +1,3 @@
+/home/mikolaj/CLionProjects/spd1/cmake-build-debug/CMakeFiles/spd1.dir
+/home/mikolaj/CLionProjects/spd1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mikolaj/CLionProjects/spd1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
