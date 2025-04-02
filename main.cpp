@@ -14,7 +14,7 @@ int main()
     Problem p(file_path3);
 
     //std::cout << p.simulate(true);
-    Solution s = overview(p);
+    Solution s = my_algorithm(p);
     std::cout << s << "\n";
 
     //overview(p);

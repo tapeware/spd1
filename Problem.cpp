@@ -18,7 +18,7 @@ Problem::Problem(const std::string& file_path)
 
     for (unsigned int i=0; i<task_count; i++)
     {
-        input >> pj >> rj >> qj;
+        input >> rj >> pj >> qj;
         Task tmp(pj,rj,qj);
         //std::cout << tmp << "\n";
         append_task(tmp);
@@ -93,9 +93,6 @@ unsigned int Problem::simulate(bool with_cooldowns) const
 
         //std::cout << "c_pi(" << i+1 << ") = " << c_pi[i] << "\n";
         //std::cout << "cq_pi(" << i+1 << ") = " << cq_pi[i] << "\n\n";
-
-
-
 
     }
     std::cout << "MAX TIME: " << max_time<< "\n\n";
