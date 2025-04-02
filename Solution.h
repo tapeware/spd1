@@ -16,10 +16,15 @@
 class Solution {
   std::vector<Task> solution_list;
 public:
-  explicit Solution(const std::vector<Task> &solution_list):solution_list(solution_list){};
+  explicit Solution(const std::vector<Task> &solution_list):solution_list(solution_list){}
   void print_solution();
+
+  std::vector<Task> get_tasks() const {return solution_list;}
+  const Task& get_task_by_index(unsigned int index) const {return solution_list[index];}
+  unsigned int get_task_count() const {return solution_list.size();}
+
 };
 
-
+std::ostream& operator<<(std::ostream& os, const Solution& s);
 
 #endif //SOLUTION_H

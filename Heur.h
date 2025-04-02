@@ -6,15 +6,22 @@
 #define HEUR_H
 #include <vector>
 #include "Task.h"
+#include "Solution.h"
+#include "Problem.h"
 
 
 class Heur {
-    std::vector<Task> to_do_list;
+    std::vector<Task>& to_do_list;
 public:
-    explicit Heur(const std::vector<Task> &to_do_list_in):to_do_list(to_do_list_in){};
+    explicit Heur(std::vector<Task> &to_do_list_in):to_do_list(to_do_list_in){};
     std::vector<Task> rj_sort();
     std::vector<Task> qj_sort();
 };
+
+
+
+
+
 
 
 
