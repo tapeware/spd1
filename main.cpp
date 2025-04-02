@@ -9,19 +9,19 @@
 int main()
 {
     const std::string file_path1 = "../dane/test.txt";
-    const std::string file_path2 = "../dane/test1.txt";
-    const std::string file_path3 = "../dane/SCHRAGE1.DAT";
+    const std::string file_path2 = "../dane/test2.txt";
+    const std::string file_path3 = "../dane/SCHRAGE2.DAT";
 
     Problem p(file_path3);
 
     Timer t;
 
     t.start();
-    //std::cout << p.simulate(true);
-    Solution s = overview(p);
+    Solution sol = overview(p);
     t.stop();
+    std::cout << sol << "\n";
 
-    std::cout << s << "CZAS: "<< t.get_measurement() << "us" <<  "\n";
+    t.print_measurement(s);
 
     //overview(p);
 

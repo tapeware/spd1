@@ -54,48 +54,45 @@ void Problem::rearrange(const Range& new_order)
     std::vector<Task> new_one;
     for (unsigned int index : new_order) new_one.push_back(old_one[index]);
     to_do_list = new_one;
-
 }
 
 
 unsigned int Problem::simulate(bool with_cooldowns) const
 {
-    unsigned int total_time=0;
     unsigned int time=0, max_time=0;
-
     std::vector<unsigned int> c_pi, cq_pi;
-
 
     for(unsigned int i=0; i<get_task_count(); i++)
     {
+
+        //obliczenie c_pi dla pierwszego zadania
         if (i==0) c_pi.push_back(to_do_list[i].get_rj() + to_do_list[i].get_pj());
         else
         {
-            std::cout << "max(" << to_do_list[i].get_rj() << ", " << c_pi[i-1] << ") + "
-            << to_do_list[i].get_pj() << " + " << to_do_list[i].get_qj() << "\n";
+            //std::cout << "max(" << to_do_list[i].get_rj() << ", " << c_pi[i-1] << ") + "
+            //<< to_do_list[i].get_pj() << " + " << to_do_list[i].get_qj() << "\n";
+
+            //obliczenie c_pi dla nastepnych zadan
             c_pi.push_back(std::max(to_do_list[i].get_rj(), c_pi[i-1]) + to_do_list[i].get_pj());
         }
+
+        //obliczenie cq_pi czyli czasu z ogonkiem
         cq_pi.push_back(c_pi[i] + to_do_list[i].get_qj());
 
-        //if (with_cooldowns) total_time += cq_pi[i];
-        //else total_time += c_pi[i];
 
-
-        //time = (cq_pi[i] ? with_cooldowns : c_pi[i]);
+        //pomiar "wirtualnego" czasu wykonywania zadania
         time = cq_pi[i];
 
-        std::cout << "c_pi(" << i+1 << ") = " << c_pi[i] << "\n";
-        std::cout << "cq_pi(" << i+1 << ") = " << time << "\n";
+        //std::cout << "c_pi(" << i+1 << ") = " << c_pi[i] << "\n";
+        //std::cout << "cq_pi(" << i+1 << ") = " << time << "\n";
 
+
+        //sprawdzenie czy jest mniejszy niz znaleziony dotychczas
+        //ten if ogolnie znajduje najmniejszy dotychczasowy wynikf
         if (time > max_time)
             max_time=time;
 
-
-        //std::cout << "c_pi(" << i+1 << ") = " << c_pi[i] << "\n";
-        //std::cout << "cq_pi(" << i+1 << ") = " << cq_pi[i] << "\n\n";
-
     }
-    std::cout << "MAX TIME: " << max_time<< "\n\n";
+    //std::cout << "MAX TIME: " << max_time<< "\n\n";
     return max_time;
-    //return total_time;
 }
