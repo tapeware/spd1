@@ -21,8 +21,4 @@ public:
 
 
 
-
-
-
-
 #endif //HEUR_H

@@ -13,4 +13,6 @@ Solution my_algorithm(Problem& p);
 Solution overview(Problem& p);
 std::vector<unsigned int> number_range(unsigned int beginning, unsigned int end);
 
+
+
 #endif //ALGORITHMS_H

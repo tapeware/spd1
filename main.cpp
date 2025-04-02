@@ -3,6 +3,7 @@
 #include "Solution.h"
 #include "Task.h"
 #include "Heur.h"
+#include <chrono>
 
 
 int main()
@@ -13,9 +14,14 @@ int main()
 
     Problem p(file_path3);
 
+    Timer t;
+
+    t.start();
     //std::cout << p.simulate(true);
-    Solution s = my_algorithm(p);
-    std::cout << s << "\n";
+    Solution s = overview(p);
+    t.stop();
+
+    std::cout << s << "CZAS: "<< t.get_measurement() << "us" <<  "\n";
 
     //overview(p);
 

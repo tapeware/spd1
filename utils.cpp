@@ -32,3 +32,14 @@ std::ostream& operator<<(std::ostream& os, const Range& r)
     os << formatted_string.str();
     return os;
 }
+
+double Timer::get_measurement() const
+{
+    if(!measured)
+        return 0;
+
+    double result = static_cast<double> (std::chrono::duration_cast<std::chrono::microseconds>
+                    (end - begin).count());
+
+    return result;
+}
