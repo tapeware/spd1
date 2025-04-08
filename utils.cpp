@@ -33,54 +33,49 @@ std::ostream& operator<<(std::ostream& os, const Range& r)
     return os;
 }
 
-std::string unit_to_str(time_unit unit)
-{
-    switch (unit)
-    {
-        case s: return "s";
-        case ms: return "ms";
-        case us: return "us";
-        case ns: return "ns";
-    }
-    return "";
-}
 
-
-double Timer::get_measurement(time_unit unit) const
+long double Timer::get_measurement() const
 {
     if(!measured)
-        return 0;
+        return 0.0;
 
-    switch (unit)
-    {
-        case s:
-        {
-            return static_cast<double> (std::chrono::duration_cast<std::chrono::seconds>
-                    (end - begin).count());
-        }
-        case ms:
-        {
-            return static_cast<double> (std::chrono::duration_cast<std::chrono::milliseconds>
-                    (end - begin).count());
-        }
-        case us:
-        {
-            return static_cast<double> (std::chrono::duration_cast<std::chrono::microseconds>
-                    (end - begin).count());
-        }
-        case ns:
-        {
-            return static_cast<double> (std::chrono::duration_cast<std::chrono::nanoseconds>
-                    (end - begin).count());
-        }
-    }
+    return static_cast<long double> (std::chrono::duration_cast<std::chrono::nanoseconds>
+    (end - begin).count());
 
-    return 0.0;
+
+
+
 }
 
-void Timer::print_measurement(time_unit unit) const
+void Timer::print_measurement() const
 {
     if (!measured) return;
-    const std::string unit_str = unit_to_str(unit);
-    std::cout << "Duration: " << get_measurement(unit) << unit_str << "\n";
+
+    long double duration = get_measurement();
+    long double number_to_print;
+    std::string unit;
+
+    if(duration <= 1000.0)
+    {
+        unit = "ns";
+        number_to_print = duration;
+    }
+    else if(duration <= 1000'000.0)
+    {
+        unit = "us";
+        number_to_print = duration/1000.0;
+    }
+    else if(duration <= 1000'000'000.0)
+    {
+        unit = "ms";
+        number_to_print = duration/1000'000.0;
+    }
+    else
+    {
+        unit = "s";
+        number_to_print = duration/1000'000'000.0;
+    }
+
+    std::cout << "Duration: " << std::fixed << std::setprecision(3)
+        << number_to_print << unit << "\n";
 }

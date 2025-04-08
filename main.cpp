@@ -10,18 +10,18 @@ int main()
 {
     const std::string file_path1 = "../dane/test.txt";
     const std::string file_path2 = "../dane/test2.txt";
-    const std::string file_path3 = "../dane/SCHRAGE2.DAT";
+    const std::string file_path3 = "../dane/SCHRAGE1.DAT";
 
     Problem p(file_path3);
 
     Timer t;
 
     t.start();
-    Solution sol = overview(p);
+    Solution sol = my_algorithm(p);
     t.stop();
     std::cout << sol << "\n";
 
-    t.print_measurement(s);
+    t.print_measurement();
 
     //overview(p);
 
