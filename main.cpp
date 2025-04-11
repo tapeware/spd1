@@ -4,6 +4,7 @@
 #include "Task.h"
 #include "Heur.h"
 #include <chrono>
+#include "Schrage_alg.h"
 
 
 int main()
@@ -15,22 +16,28 @@ int main()
     Problem p(file_path3);
 
     Timer t;
-
+    std::vector<Task> tasks(p.get_tasks());
+    Schrage schrage(tasks);
+    int s;
     t.start();
     //std::cout << p.simulate(true);
-    Solution s = overview(p);
+    s= schrage.schrage_with_div_sort();
+   // Solution s1 (schrage.schrage_sort());
     t.stop();
 
-    std::cout << s << "CZAS: "<< t.get_measurement() << "us" <<  "\n";
+    //std::cout << s1 << "  CZAS: "<< t.get_measurement() << "us" <<  "\n";
+    std::cout <<"Cmax:"<< s << "  CZAS: "<< t.get_measurement() << "us" <<  "\n";
 
     //overview(p);
 
     //Solution test1(p.get_tasks());
     //test1.print_solution();
     //std::cout<<std::endl;
+
     // std::vector<Task> tasks = p.get_tasks();
+
     // Heur heur(tasks);
-    //
+
     // std::vector<Task> sorted_by_qj = heur.qj_sort();
     // Solution heur_qj(sorted_by_qj);
     // //heur_qj.print_solution();

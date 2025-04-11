@@ -33,13 +33,49 @@ std::ostream& operator<<(std::ostream& os, const Range& r)
     return os;
 }
 
-double Timer::get_measurement() const
+
+long double Timer::get_measurement() const
 {
     if(!measured)
-        return 0;
+        return 0.0;
 
-    double result = static_cast<double> (std::chrono::duration_cast<std::chrono::microseconds>
-                    (end - begin).count());
+    return static_cast<long double> (std::chrono::duration_cast<std::chrono::nanoseconds>
+    (end - begin).count());
 
-    return result;
+
+
+
+}
+
+void Timer::print_measurement() const
+{
+    if (!measured) return;
+
+    long double duration = get_measurement();
+    long double number_to_print;
+    std::string unit;
+
+    if(duration <= 1000.0)
+    {
+        unit = "ns";
+        number_to_print = duration;
+    }
+    else if(duration <= 1000'000.0)
+    {
+        unit = "us";
+        number_to_print = duration/1000.0;
+    }
+    else if(duration <= 1000'000'000.0)
+    {
+        unit = "ms";
+        number_to_print = duration/1000'000.0;
+    }
+    else
+    {
+        unit = "s";
+        number_to_print = duration/1000'000'000.0;
+    }
+
+    std::cout << "Duration: " << std::fixed << std::setprecision(3)
+        << number_to_print << unit << "\n";
 }

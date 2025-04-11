@@ -11,7 +11,7 @@
 
 
 class Heur {
-    std::vector<Task>& to_do_list;
+    const std::vector<Task>& to_do_list;
 public:
     explicit Heur(std::vector<Task> &to_do_list_in):to_do_list(to_do_list_in){};
     std::vector<Task> rj_sort();

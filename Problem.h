@@ -22,6 +22,7 @@ class Problem
 
 public:
     explicit Problem(const std::string& file_path);
+    explicit Problem(const std::vector<Task>& tasks) {to_do_list = tasks;}
     Problem() = default;
 
     void rearrange(const Range& new_order);
