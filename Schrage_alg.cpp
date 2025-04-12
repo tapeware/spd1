@@ -53,7 +53,7 @@ int Schrage::schrage_with_div_sort() {
     std::vector<Task> final_sol;
     std::vector<Task> temp;
     auto cmp = [](const Task &t1,const Task &t2) {
-        return t1.get_rj() < t2.get_rj();
+        return t1.get_qj() < t2.get_qj();
     };
 
 
@@ -86,7 +86,7 @@ int Schrage::schrage_with_div_sort() {
                 }
                 else {
                     if (sol.size()==1) {
-                        actual_time=actual_time+it->get_rj();
+                        actual_time=actual_time+it->get_qj();
                     }
                     sol.erase(it);
                 }
