@@ -48,10 +48,11 @@ std::vector<Task> Schrage::schrage_sort() {
 }
 
 int Schrage::schrage_with_div_sort() {
-    int actual_time=0;
+    unsigned int actual_time=0;
     std::vector<Task> sol = to_do_list;
     std::vector<Task> final_sol;
     std::vector<Task> temp;
+    unsigned int max_styg=0;
     auto cmp = [](const Task &t1,const Task &t2) {
         return t1.get_qj() < t2.get_qj();
     };
@@ -70,6 +71,8 @@ int Schrage::schrage_with_div_sort() {
         if (temp.empty())
         {
             actual_time++;
+            if (!max_styg<=0)
+                max_styg--;
         }
         else {
             for (const auto& task : temp)
@@ -77,6 +80,8 @@ int Schrage::schrage_with_div_sort() {
                 lambda_priority_queue.push(task);
             }
             actual_time++;
+            if (!max_styg<=0)
+                max_styg--;
             //final_sol.push_back(lambda_priority_queue.top());
             const Task& top_task = lambda_priority_queue.top();
             auto it = std::find(sol.begin(), sol.end(), top_task);
@@ -85,8 +90,11 @@ int Schrage::schrage_with_div_sort() {
                     it->set_pj(it->get_pj()-1);
                 }
                 else {
-                    if (sol.size()==1) {
-                        actual_time=actual_time+it->get_qj();
+                    if (it->get_qj()>max_styg) {
+                        max_styg=it->get_qj();
+                    }
+                    if (sol.size()==1 &&max_styg>0) {
+                        actual_time=actual_time+max_styg;
                     }
                     sol.erase(it);
                 }

@@ -11,7 +11,7 @@ int main()
 {
     const std::string file_path1 = "../dane/test.txt";
     const std::string file_path2 = "../dane/test1.txt";
-    const std::string file_path3 = "../dane/SCHRAGE1.DAT";
+    const std::string file_path3 = "../dane/SCHRAGE3.DAT";
 
     Problem p(file_path3);
 
