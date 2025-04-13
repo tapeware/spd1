@@ -76,6 +76,6 @@ void Timer::print_measurement() const
         number_to_print = duration/1000'000'000.0;
     }
 
-    std::cout << "Duration: " << std::fixed << std::setprecision(3)
+    std::cout << "time: " << std::fixed << std::setprecision(3)
         << number_to_print << unit << "\n";
 }

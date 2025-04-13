@@ -21,6 +21,6 @@ std::vector<Task> Heur::qj_sort() {
         [](const Task &t1, const Task &t2) {
             return t1.get_qj() > t2.get_qj();
         });
-    std::cout << "ROZMIAR: " << solution.size() << "\n";
+    //std::cout << "ROZMIAR: " << solution.size() << "\n";
     return solution;
 }

@@ -91,6 +91,12 @@ build CMakeFiles/spd1.dir/utils.cpp.o: CXX_COMPILER__spd1_unscanned_Debug /home/
   OBJECT_DIR = CMakeFiles/spd1.dir
   OBJECT_FILE_DIR = CMakeFiles/spd1.dir
 
+build CMakeFiles/spd1.dir/Schrage_alg.cpp.o: CXX_COMPILER__spd1_unscanned_Debug /home/mikolaj/CLionProjects/spd1/Schrage_alg.cpp || cmake_object_order_depends_target_spd1
+  DEP_FILE = CMakeFiles/spd1.dir/Schrage_alg.cpp.o.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/spd1.dir
+  OBJECT_FILE_DIR = CMakeFiles/spd1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target spd1
@@ -99,7 +105,7 @@ build CMakeFiles/spd1.dir/utils.cpp.o: CXX_COMPILER__spd1_unscanned_Debug /home/
 #############################################
 # Link the executable spd1
 
-build spd1: CXX_EXECUTABLE_LINKER__spd1_Debug CMakeFiles/spd1.dir/main.cpp.o CMakeFiles/spd1.dir/Task.cpp.o CMakeFiles/spd1.dir/Problem.cpp.o CMakeFiles/spd1.dir/Solution.cpp.o CMakeFiles/spd1.dir/Heur.cpp.o CMakeFiles/spd1.dir/algorithms.cpp.o CMakeFiles/spd1.dir/utils.cpp.o
+build spd1: CXX_EXECUTABLE_LINKER__spd1_Debug CMakeFiles/spd1.dir/main.cpp.o CMakeFiles/spd1.dir/Task.cpp.o CMakeFiles/spd1.dir/Problem.cpp.o CMakeFiles/spd1.dir/Solution.cpp.o CMakeFiles/spd1.dir/Heur.cpp.o CMakeFiles/spd1.dir/algorithms.cpp.o CMakeFiles/spd1.dir/utils.cpp.o CMakeFiles/spd1.dir/Schrage_alg.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/spd1.dir
   POST_BUILD = :

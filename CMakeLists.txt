@@ -15,4 +15,7 @@ add_executable(spd1 main.cpp
         algorithms.cpp
         algorithms.h
         utils.cpp
-        utils.h)
+        utils.h
+        Schrage_alg.cpp
+        Schrage_alg.h
+        Schrage_alg.cpp)
