@@ -47,7 +47,6 @@ std::ostream& operator<<(std::ostream& os, const Problem& p)
     return os;
 }
 
-
 void Problem::rearrange(const Range& new_order)
 {
     const std::vector<Task> old_one=get_tasks();
@@ -55,7 +54,6 @@ void Problem::rearrange(const Range& new_order)
     for (unsigned int index : new_order) new_one.push_back(old_one[index]);
     to_do_list = new_one;
 }
-
 
 unsigned int Problem::simulate(bool with_cooldowns) const
 {
@@ -79,19 +77,15 @@ unsigned int Problem::simulate(bool with_cooldowns) const
         //obliczenie cq_pi czyli czasu z ogonkiem
         cq_pi.push_back(c_pi[i] + to_do_list[i].get_qj());
 
-
         //pomiar "wirtualnego" czasu wykonywania zadania
         time = cq_pi[i];
 
         //std::cout << "c_pi(" << i+1 << ") = " << c_pi[i] << "\n";
         //std::cout << "cq_pi(" << i+1 << ") = " << time << "\n";
 
-
         //sprawdzenie czy jest mniejszy niz znaleziony dotychczas
         //ten if ogolnie znajduje najmniejszy dotychczasowy wynikf
-        if (time > max_time)
-            max_time=time;
-
+        if (time > max_time) max_time=time;
     }
     //std::cout << "MAX TIME: " << max_time<< "\n\n";
     return max_time;

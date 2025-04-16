@@ -13,16 +13,13 @@ Solution::Solution(const std::vector<Task>& solution_list) : solution_list(solut
     has_vector = true;
 }
 
-
 void Solution::print_solution()
 {
     if (!has_vector) return;
 
-    for (auto task : solution_list) {
+    for (auto task : solution_list)
         std::cout<<task.get_pj()<<" "<<task.get_rj()<<" "<<task.get_qj()<<std::endl;
-    }
 }
-
 
 std::ostream& operator<<(std::ostream& os, const Solution& s)
 {

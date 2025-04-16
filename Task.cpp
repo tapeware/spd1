@@ -13,9 +13,8 @@ std::ostream& operator<<(std::ostream& os, const Task& t)
 
 bool operator==(const Task& right, const Task& left)
 {
-    return (
+    return
     right.get_pj() == left.get_pj() &&
     right.get_qj() == left.get_qj() &&
-    right.get_rj() == left.get_rj()
-    );
+    right.get_rj() == left.get_rj();
 }

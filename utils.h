@@ -31,6 +31,7 @@ public:
     void start() {begin=std::chrono::steady_clock::now();}
     void stop() {end=std::chrono::steady_clock::now(); measured=true;}
     void print_measurement() const;
+    std::string get_measurement_with_unit() const;
 };
 
 

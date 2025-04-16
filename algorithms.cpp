@@ -24,7 +24,6 @@ Solution my_algorithm(Problem& p)
     return s;
 }
 
-
 Solution overview(Problem& p)
 {
     std::vector<Task> tasks = p.get_tasks();
@@ -32,13 +31,11 @@ Solution overview(Problem& p)
     Problem tmp=p, optimally_aranged_problem;
     unsigned int time=0, minimal_time=0;
 
-
     do
     {
         tmp=p;
         tmp.rearrange(task_order);
         time = tmp.simulate(true);
-
         if(time < minimal_time || minimal_time==0)
         {
             minimal_time = time;
@@ -71,13 +68,7 @@ Solution carlier(Problem &p)
 
     //std::cout <<"cmax=" << c_max <<"\n";
 
-
-    if (c < 0)
-    {
-        //std::cout <<"imma head out\n";
-        return solution_by_schrage;
-    }
-
+    if (c < 0) return solution_by_schrage;
 
     //Range K = get_range(c-1, b);
     unsigned int pk = get_pk(b,c, tasks), qk = get_qk(b,c,tasks), rk = get_rk(b,c, tasks),
@@ -85,11 +76,9 @@ Solution carlier(Problem &p)
 
     //std::cout <<"rk=" << rk << ", pk=" << pk << ", qk=" << qk <<"\n";
 
-
     Schrage test_sch1(tasks);
     tasks[c].set_rj( std::max(original_r_c, rk+pk) );
     //std::cout <<"old r=" << original_r_c << ", new r=" << tasks[c].get_rj()<<"\n";
-
 
     lower_bound = test_sch1.schrage_with_div_sort().get_c_max();
     //lower_bound = sch.schrage_with_div_sort().get_c_max();
@@ -111,7 +100,6 @@ Solution carlier(Problem &p)
 
     //std::cout <<"old q=" << original_q_c << ", new q=" << tasks[c].get_qj()<<"\n";
 
-
     lower_bound = test_sch2.schrage_with_div_sort().get_c_max();
     Problem new_problem2(tasks);
 
@@ -122,21 +110,15 @@ Solution carlier(Problem &p)
 
     //std::cout <<"new cmax=" << c_max <<"\n";
     tasks[c].set_qj(original_q_c);
-
     return Solution(c_max);
 }
-
-
 
 unsigned int get_rk(int b, int c, const std::vector<Task>& tasks)
 {
     unsigned int rk = tasks[c+1].get_rj();
 
     for(unsigned int i=c+1; i<=b; i++)
-    {
-        if(tasks[i].get_rj() < rk)
-            rk = tasks[i].get_rj();
-    }
+        if(tasks[i].get_rj() < rk) rk = tasks[i].get_rj();
     return rk;
 }
 
@@ -145,10 +127,7 @@ unsigned int get_qk(int b, int c, const std::vector<Task>& tasks)
     unsigned int qk = tasks[c+1].get_qj();
 
     for(unsigned int i=c+1; i<=b; i++)
-    {
-        if(tasks[i].get_qj() < qk)
-            qk = tasks[i].get_qj();
-    }
+        if(tasks[i].get_qj() < qk) qk = tasks[i].get_qj();
     return qk;
 }
 
@@ -156,10 +135,7 @@ unsigned int get_pk(int b, int c, const std::vector<Task>& tasks)
 {
     unsigned int pk=0;
 
-    for(unsigned int i=c+1; i<=b; i++)
-    {
-        pk+=tasks[i].get_pj();
-    }
+    for(unsigned int i=c+1; i<=b; i++) pk+=tasks[i].get_pj();
 
     return pk;
 }

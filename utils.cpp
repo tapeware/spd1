@@ -20,13 +20,9 @@ std::ostream& operator<<(std::ostream& os, const Range& r)
 
     for (unsigned int i : r)
     {
-        if(++counter == 1)
-            formatted_string << "[" << i << ", ";
-        else if(counter != r.size())
-            formatted_string << i << ", ";
-        else
-            formatted_string << i << "]";
-
+        if(++counter == 1) formatted_string << "[" << i << ", ";
+        else if(counter != r.size()) formatted_string << i << ", ";
+        else formatted_string << i << "]";
     }
 
     os << formatted_string.str();
@@ -41,19 +37,16 @@ long double Timer::get_measurement() const
 
     return static_cast<long double> (std::chrono::duration_cast<std::chrono::nanoseconds>
     (end - begin).count());
-
-
-
-
 }
 
-void Timer::print_measurement() const
+std::string Timer::get_measurement_with_unit() const
 {
-    if (!measured) return;
+    if (!measured) return "0s";
 
     long double duration = get_measurement();
     long double number_to_print;
     std::string unit;
+    std::stringstream result;
 
     if(duration <= 1000.0)
     {
@@ -76,6 +69,12 @@ void Timer::print_measurement() const
         number_to_print = duration/1000'000'000.0;
     }
 
-    std::cout << "time: " << std::fixed << std::setprecision(3)
-        << number_to_print << unit << "\n";
+   result << std::fixed << std::setprecision(3)<< number_to_print << unit << "\n";
+    return result.str();
+}
+
+void Timer::print_measurement() const
+{
+    if (!measured) return;
+    std::cout << "time: " << get_measurement_with_unit();
 }
